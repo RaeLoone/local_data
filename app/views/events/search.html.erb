@@ -1,0 +1,13 @@
+<h1>Showing Events Near <%= params[:q] %></h1>
+
+
+	<% @events.each do |event| %>
+	
+	<strong>Name:</strong> <%= event[:name] %> <br>
+	<strong>Address:</strong> <%= event[:location] %> <br>
+	<strong>Description:</strong> <%= event[:description] %> <br>
+	<br>
+<% end %>
+
+
+
