@@ -44,7 +44,7 @@ class Event < ActiveRecord::Base
 			event[:location] = "#{result["neighborhood"]}, #{result["street_address"]} #{result["cross_street"]}"
 			event[:description] = result["web_description"]
 
-			event = Event.create!(event)
+				# event = Event.create!(event)
 			events << event	
 		end	
 
