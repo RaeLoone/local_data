@@ -35,15 +35,17 @@ class Event < ActiveRecord::Base
 		events_json_response
 	end
 
+
+	# I was wondering couldn't I use this to feed into the database to keep the code DRY since there's already attr_accessible? I thought maybe we could add Event.create! somewhere.
 	def buildEvents(events_json_response)
 		events = Array.new
 
 		events_json_response["results"].each do |result|
 			event = {}
 			event[:name] = result["event_name"]
-			event[:location] = "#{result["neighborhood"]}, #{result["street_address"]} #{result["cross_street"]}"
+			event[:location] = "#{result["neighborhood"]}, #{result["street_address"]}"
 			event[:description] = result["web_description"]
-
+			# # {result["cross_street"]}
 				# event = Event.create!(event)
 			events << event	
 		end	
