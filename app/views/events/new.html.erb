@@ -1,18 +1,3 @@
-<script type="text/javascript">
-
-window.onload = function(){ 
-    //Get submit button
-    var submitbutton = document.getElementById("container");
-    //Add listener to submit button
-    if(submitbutton.addEventListener){
-        submitbutton.addEventListener("click", function() {
-            if (submitbutton.value == 'Neighborhood'){'City Zipcode'
-                submitbutton.value = '';
-            }
-        });
-    }
-}
-</script>
 
 
 <html>
@@ -79,8 +64,29 @@ window.onload = function(){
         clear:both;
     }
     </style>
+    <style type ="text/css">
+
+
+     .image {
+     position:relative;
+     z-index:15;
+     top:100%;
+     left:35%;
+     
+     height: 200px;
+     width: 50%;
+     margin-left: auto;
+     margin-right: 60.5%;
+     margin-top: 12%;
+    }
+
+
+    </style>
 </head>
 <body>
+<div class="image">
+<img src="/images/Loogle.jpg" title="Loogle" style="padding-top: 10px ;">
+</div>    
 
 <div class="container">
 	<%= render 'form' %>

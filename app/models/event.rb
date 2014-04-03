@@ -45,6 +45,12 @@ class Event < ActiveRecord::Base
 			event[:name] = result["event_name"]
 			event[:location] = "#{result["neighborhood"]}, #{result["street_address"]}"
 			event[:description] = result["web_description"]
+
+			arr = getCoordinates("#{result["neighborhood"]}, #{result["street_address"]}")
+
+			event[:latitude] = arr[0] # lat
+			event[:longitude] = arr[1] # lon
+
 			# # {result["cross_street"]}
 				# event = Event.create!(event)
 			events << event	
@@ -53,10 +59,25 @@ class Event < ActiveRecord::Base
 		events
 	end 
 
+	# def parseBuildEvents(events)
+	# 	addresses = Array.new
+
+	# 	events.each do |event|
+	# 		# addresses << event[:location]
+	# 		# address = []
+	# 		address = result[1]["event[:location]"]
+	# 		# addresses << address
+	# 	end
+		
+	# 	addresses
+	# end	
+			
+
+
 	def process(user_input)
 		newLocation = {}
 		newLocation[:location] = user_input
-		
+	
 		e = Event.new
 		ge = e.getCoordinates user_input
 		
@@ -66,11 +87,16 @@ class Event < ActiveRecord::Base
 		gc = e.callEvents ge
 
 		be = e.buildEvents gc
+		#test = e.parseBuildEvents be
+
+		# test
+
 
 	
 		location = Location.create!(newLocation)
 
 		be
+
 
 		# newEvent = {}
 		# newEvent[:name].each do |name|
