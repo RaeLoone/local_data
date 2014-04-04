@@ -64,9 +64,6 @@ class Event < ActiveRecord::Base
 
 	# 	events.each do |event|
 	# 		# addresses << event[:location]
-	# 		# address = []
-	# 		address = result[1]["event[:location]"]
-	# 		# addresses << address
 	# 	end
 		
 	# 	addresses

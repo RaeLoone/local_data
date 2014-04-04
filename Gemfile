@@ -44,6 +44,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'mapbox-rails', '~> 1.6.1.1'
+
 gem 'less-rails', '~> 2.5.0'
 
 gem 'therubyracer', '~> 0.12.1'
