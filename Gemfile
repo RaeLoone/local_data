@@ -38,9 +38,9 @@ gem 'therubyracer', '~> 0.12.1'
 
 gem 'twitter-bootstrap-rails', '~> 2.2.8'
 
-group :development, :test do
-  gem 'sqlite3'
-end
+# group :development, :test do
+#   gem 'sqlite3'
+# end
 
 group :production do
   gem 'pg', '0.15.1'

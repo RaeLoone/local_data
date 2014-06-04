@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
 
 	attr_accessible :name, :event_location, :description, :event_latitude, :event_longitude,  :location_id 
 
-	def getCoordinates address
+	def getCoordinates(address)
 		arr = Array.new
 
 		address = address.split(" ").join("+")
