@@ -3,10 +3,10 @@
 	<% @events.each do |event| %>
 	
 	<strong>Name:</strong> <%= event[:name] %> <br>
-	<strong>Address:</strong> <%= event[:location] %> <br>
+	<strong>Address:</strong> <%= event[:event_location] %> <br>
 	<strong>Description:</strong> <%= event[:description] %> <br>
-	<strong>Latitude:</strong> <%= event[:latitude] %> <br>
-	<strong>Longitude:</strong> <%= event[:longitude] %> <br>
+	<strong>Latitude:</strong> <%= event[:event_latitude] %> <br>
+	<strong>Longitude:</strong> <%= event[:event_longitude] %> <br>
 	<br>
 <% end %>
 

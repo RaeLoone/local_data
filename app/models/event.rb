@@ -2,9 +2,12 @@ class Event < ActiveRecord::Base
 	require 'json'
 	require 'rest_client'
 
-	attr_accessible :name, :description, :location_id
 
-	def getCoordinates address
+
+
+	attr_accessible :name, :event_location, :description, :event_latitude, :event_longitude,  :location_id 
+
+	def getCoordinates(address)
 		arr = Array.new
 
 		address = address.split(" ").join("+")
@@ -39,40 +42,27 @@ class Event < ActiveRecord::Base
 	# I was wondering couldn't I use this to feed into the database to keep the code DRY since there's already attr_accessible? I thought maybe we could add Event.create! somewhere.
 	def buildEvents(events_json_response)
 		events = Array.new
-
+		
 		events_json_response["results"].each do |result|
 			event = {}
 			event[:name] = result["event_name"]
-			event[:location] = "#{result["neighborhood"]}, #{result["street_address"]}"
+			event[:event_location] = "#{result["neighborhood"]}, #{result["street_address"]}"
 			event[:description] = result["web_description"]
 
 			arr = getCoordinates("#{result["neighborhood"]}, #{result["street_address"]}")
 
-			event[:latitude] = arr[0] # lat
-			event[:longitude] = arr[1] # lon
+			event[:event_latitude] = arr[0] # lat
+			event[:event_longitude] = arr[1] # lon
+		
 
-			# # {result["cross_street"]}
-				# event = Event.create!(event)
-			events << event	
+			
+			events << event
+			# Event.create!(events)
 		end	
 
 		events
+
 	end 
-
-	# def parseBuildEvents(events)
-	# 	addresses = Array.new
-
-	# 	events.each do |event|
-	# 		# addresses << event[:location]
-	# 		# address = []
-	# 		address = result[1]["event[:location]"]
-	# 		# addresses << address
-	# 	end
-		
-	# 	addresses
-	# end	
-			
-
 
 	def process(user_input)
 		newLocation = {}
@@ -95,16 +85,22 @@ class Event < ActiveRecord::Base
 	
 		location = Location.create!(newLocation)
 
+		# newEvents = Array.new
+		#:name, :event_location, :description, :event_latitude, :event_longitude,  :location_id 
+
+
+		be.each do |event|
+			newEvent = {}
+
+			newEvent[:name] = event[:name]
+			newEvent[:event_location] = event[:event_location]
+			newEvent[:description] = event[:description]
+			newEvent[:event_latitude] = event[:event_latitude]
+			newEvent[:event_longitude] = event[:event_longitude]
+			newEvent[:location_id] = location.id
+			Event.create!(newEvent)	
+		end
 		be
-
-
-		# newEvent = {}
-		# newEvent[:name].each do |name|
-		# 	event
-		# newEvent[:description] = be[:description]
-
-		# event = Event.create!(newEvent)
-		
 	end
 
 
